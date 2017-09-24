@@ -1,13 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { User } from './user';
-
-const USERS: User[] = [
-  { id: 11, name: 'kmeeks11' },
-  { id: 12, name: 'kmeeks12' },
-  { id: 13, name: 'kmeeks13' },
-  { id: 14, name: 'kmeeks14' },
-  { id: 15, name: 'kmeeks15' }
-];
+import { UserService } from './user.service';
 
 @Component({
   selector: 'app-root',
@@ -33,13 +26,24 @@ const USERS: User[] = [
     li.selected {
       color: #ff0000;
     }
-  `]
+  `],
+  providers: [UserService]
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'BGG Display';
+  users: User[];
   selectedUser: User;
-  users = USERS;
+
+  constructor(private userService: UserService) { }
+
+  getUsers(): void {
+    this.userService.getUsers().then(users => this.users = users);
+  }
+
+  ngOnInit(): void {
+    this.getUsers();
+  }
 
   onSelect(user: User): void {
     this.selectedUser = user;
