@@ -1,23 +1,31 @@
-import { Component, Input } from '@angular/core';
+import 'rxjs/add/operator/switchMap';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Location } from '@angular/common';
 import { User } from './user';
+import { UserService } from './user.service';
 
 @Component({
   selector: 'user-detail',
-  template: `
-    <div *ngIf="user">
-      <h2>{{user.name}} details</h2>
-      <div>
-        <label>id: </label>
-        {{user.id}}
-      </div>
-      <div>
-        <label>name: </label>
-        <input [(ngModel)]="user.name" placeholder="name">
-      </div>
-    </div>
-  `
+  templateUrl: './user-detail.component.html'
 })
 
-export class UserDetailComponent {
-  @Input() user: User
+export class UserDetailComponent implements OnInit {
+  user: User;
+
+  constructor(
+    private location: Location,
+    private route: ActivatedRoute,
+    private userService: UserService
+  ) { }
+
+  goBack(): void {
+    this.location.back();
+  }
+
+  ngOnInit(): void {
+    this.route.paramMap
+      .switchMap((params: ParamMap) => this.userService.getUser(+params.get('id')))
+      .subscribe(user => this.user = user);
+  }
 }

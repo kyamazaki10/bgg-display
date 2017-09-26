@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { User } from './user';
 import { USERS } from './mock-users';
 
@@ -13,5 +14,10 @@ export class UserService {
     return new Promise(resolve => {
       setTimeout(() => resolve(this.getUsers()),2000);
     });
+  }
+
+  getUser(id: number): Promise<User> {
+    return this.getUsers()
+      .then(users => users.find(user => user.id === id));
   }
 }
