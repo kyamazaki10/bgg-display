@@ -1,5 +1,6 @@
 li {
   cursor: pointer;
+  margin: 5px;
 }
 
 li:hover, li.selected {

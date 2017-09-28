@@ -2,8 +2,7 @@
   <h2>{{user.name}} details</h2>
 
   <div>
-    <label>id: </label>
-    {{user.id}}
+    <label>id: </label> {{user.id}}
   </div>
 
   <div>
@@ -11,5 +10,6 @@
     <input [(ngModel)]="user.name" placeholder="name" />
   </div>
 
+  <button (click)="save()">Save</button>
   <button (click)="goBack()">Back</button>
 </div>

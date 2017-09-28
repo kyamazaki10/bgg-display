@@ -24,6 +24,30 @@ export class UsersComponent implements OnInit {
       .then(users => this.users = users);
   }
 
+  add(name: string): void {
+    name = name.trim();
+
+    if (!name) {
+      return;
+    }
+
+    this.userService.create(name)
+      .then(user => {
+        this.users.push(user);
+        this.selectedUser = null;
+      });
+  }
+
+  delete(user: User): void {
+    this.userService.delete(user.id)
+      .then(() => {
+        this.users = this.users.filter(u => u !== user);
+        if (this.selectedUser === user) {
+          this.selectedUser = null;
+        }
+      })
+  }
+
   goToDetail(): void {
     this.router.navigate(['/users', this.selectedUser.id]);
   }
