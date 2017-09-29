@@ -1,0 +1,10 @@
+.search-wrapper {
+  clear: both;
+  padding-top: 100px;
+  text-align: center;
+}
+
+.search {
+  width: 40%;
+  display: inline-block;
+}
