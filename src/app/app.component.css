@@ -1,21 +1,23 @@
-nav {
-  margin-bottom: 30px;
-}
-
 nav a {
-  padding: 10px 10px;
-  background-color: #eeeeee;
+  color: #888888;
+  padding: 10px;
 }
 
 nav a:hover {
-  color: #039be5;
-  background-color: #dddddd;
-}
-
-nav a:visited, a:link {
-  color: #607D8B;
+  color: #333333;
 }
 
 nav a.active {
-  color: #039be5;
+  color: #ff0000;
+}
+
+.nav-links {
+  font-size: 15px;
+  margin: 10px;
+  float: left;
+}
+
+.title {
+  font-size: 32px;
+  float: left;
 }

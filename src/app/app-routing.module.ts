@@ -7,11 +7,6 @@ import { UsersComponent } from './users.component';
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: '/dashboard',
-    pathMatch: 'full'
-  },
-  {
     path: 'dashboard',
     component: DashboardComponent
   },
