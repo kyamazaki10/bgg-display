@@ -9,6 +9,7 @@ import { InMemoryDataService } from './in-memory-data.service';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 import { AppComponent } from './app.component';
+import { BggService } from './bgg.service';
 import { DashboardComponent } from './dashboard.component';
 import { SearchComponent } from './search.component';
 import { UserDetailComponent } from './user-detail.component';
@@ -33,9 +34,12 @@ import { AppRoutingModule } from './app-routing.module';
     FormsModule,
     HttpModule,
     NgbModule.forRoot(),
-    InMemoryWebApiModule.forRoot(InMemoryDataService)
+    InMemoryWebApiModule.forRoot(InMemoryDataService, {
+      passThruUnknownUrl: true
+    })
   ],
   providers: [
+    BggService,
     UserService
   ],
   bootstrap: [
