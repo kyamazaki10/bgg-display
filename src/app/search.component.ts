@@ -1,20 +1,18 @@
 import { Component } from '@angular/core';
-
-import { BggService } from './bgg.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'search',
   templateUrl: './search.component.html',
-  styleUrls: [ './search.component.css' ],
-  providers: [ BggService ]
+  styleUrls: [ './search.component.css' ]
 })
 
 export class SearchComponent {
   constructor(
-    private bggService: BggService
+    private router: Router
   ) { }
 
   search(user: string): void {
-    this.bggService.search(user);
+    this.router.navigate(['bgg', user]);
   }
 }
