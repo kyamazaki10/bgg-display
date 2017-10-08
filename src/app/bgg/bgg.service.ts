@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import * as xml2js from 'xml2js';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -12,12 +13,18 @@ export class BggService {
     private http: Http
   ) { }
 
-  search(user: string): Promise<any> {
+  userCollection(user: string): Promise<any> {
     const url = `${this.bggUrl}/collection?username=${user}`;
+    let json = {};
 
     return this.http.get(url)
       .toPromise()
-      .then(() => null)
+      .then(response => {
+        xml2js.parseString(response.text(), function(error, result) {
+          json = result.items;
+        });
+        return json;
+      })
       .catch(error => {
         console.log(error);
       });

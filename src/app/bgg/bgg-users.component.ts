@@ -12,7 +12,7 @@ import 'rxjs/add/operator/switchMap';
 })
 
 export class BggUsersComponent implements OnInit {
-  private user: string;
+  private bggUserCollection: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,7 +21,7 @@ export class BggUsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap
-      .switchMap((params: ParamMap) => this.bggService.search(params.get('user')))
-      .subscribe(user => this.user = user);
+      .switchMap((params: ParamMap) => this.bggService.userCollection(params.get('user')))
+      .subscribe(bggUserCollection => this.bggUserCollection = bggUserCollection.item);
   }
 }
