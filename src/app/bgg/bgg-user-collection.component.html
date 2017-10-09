@@ -1,0 +1,20 @@
+<div class="collection-wrapper">
+  <h1>{{bggUser}}'s Collection</h1>
+
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th>Plays</th>
+        <th>Game</th>
+        <th>Owned</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let collection of bggUserCollection">
+        <td>{{collection.numplays[0]}}</td>
+        <td><a href="https://boardgamegeek.com/boardgame/{{collection.$.collid}}">{{collection.name[0]._}}</a></td>
+        <td>{{collection.status[0].$.own}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

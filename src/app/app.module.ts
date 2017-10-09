@@ -10,7 +10,7 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 import { AppComponent } from './app.component';
 import { BggService } from './bgg/bgg.service';
-import { BggUsersComponent } from './bgg/bgg-users.component';
+import { BggUserCollectionComponent } from './bgg/bgg-user-collection.component';
 import { DashboardComponent } from './dashboard.component';
 import { SearchComponent } from './search.component';
 import { UserDetailComponent } from './user-detail.component';
@@ -23,7 +23,7 @@ import { AppRoutingModule } from './app-routing.module';
 @NgModule({
   declarations: [
     AppComponent,
-    BggUsersComponent,
+    BggUserCollectionComponent,
     DashboardComponent,
     SearchComponent,
     UserDetailComponent,

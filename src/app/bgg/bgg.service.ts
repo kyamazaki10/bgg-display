@@ -7,7 +7,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 
 export class BggService {
-  private bggUrl = 'https://www.boardgamegeek.com/xmlapi2';
+  bggUrl = 'https://www.boardgamegeek.com/xmlapi2';
 
   constructor(
     private http: Http

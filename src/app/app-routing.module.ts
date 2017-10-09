@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { BggUsersComponent } from './bgg/bgg-users.component';
+import { BggUserCollectionComponent } from './bgg/bgg-user-collection.component';
 import { DashboardComponent } from './dashboard.component';
 import { SearchComponent } from './search.component';
 import { UserDetailComponent } from './user-detail.component';
@@ -14,7 +14,7 @@ const routes: Routes = [
   },
   {
     path: 'bgg/:user',
-    component: BggUsersComponent
+    component: BggUserCollectionComponent
   },
   {
     path: 'dashboard',
