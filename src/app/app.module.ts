@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { BggService } from './bgg/bgg.service';
 import { BggUserCollectionComponent } from './bgg/bgg-user-collection.component';
 import { DashboardComponent } from './dashboard.component';
+import { NavigationComponent } from './navigation.component';
 import { SearchComponent } from './search.component';
 import { UserDetailComponent } from './user-detail.component';
 import { UserSearchComponent } from './user-search.component';
@@ -25,6 +26,7 @@ import { AppRoutingModule } from './app-routing.module';
     AppComponent,
     BggUserCollectionComponent,
     DashboardComponent,
+    NavigationComponent,
     SearchComponent,
     UserDetailComponent,
     UserSearchComponent,
