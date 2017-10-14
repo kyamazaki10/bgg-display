@@ -4,23 +4,14 @@ import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-// imports for loading and configuring in-memory web api
-import { InMemoryDataService } from './in-memory-data.service';
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-
 import { AppComponent } from './app.component';
 import { BggService } from './bgg/bgg.service';
 import { BggSortTableColumn } from './bgg/bgg-sort-table-column.component';
 import { BggSortTableDirective } from './bgg/bgg-sort-table.directive';
 import { BggSortTableService } from './bgg/bgg-sort-table.service';
 import { BggUserCollectionComponent } from './bgg/bgg-user-collection.component';
-import { DashboardComponent } from './dashboard.component';
 import { NavigationComponent } from './navigation.component';
 import { SearchComponent } from './search.component';
-import { UserDetailComponent } from './user-detail.component';
-import { UserSearchComponent } from './user-search.component';
-import { UserService } from './user.service';
-import { UsersComponent } from './users.component';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -30,27 +21,19 @@ import { AppRoutingModule } from './app-routing.module';
     BggSortTableColumn,
     BggSortTableDirective,
     BggUserCollectionComponent,
-    DashboardComponent,
     NavigationComponent,
-    SearchComponent,
-    UserDetailComponent,
-    UserSearchComponent,
-    UsersComponent
+    SearchComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     FormsModule,
     HttpModule,
-    NgbModule.forRoot(),
-    InMemoryWebApiModule.forRoot(InMemoryDataService, {
-      passThruUnknownUrl: true
-    })
+    NgbModule.forRoot()
   ],
   providers: [
     BggService,
-    BggSortTableService,
-    UserService
+    BggSortTableService
   ],
   bootstrap: [
     AppComponent
