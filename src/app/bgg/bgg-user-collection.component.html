@@ -1,12 +1,12 @@
 <div class="collection-wrapper">
   <h1>{{bggUser}}'s Collection</h1>
 
-  <table class="table table-sm">
+  <table sort-table (sorted)="onSorted($event)" class="table table-sm">
     <thead class="thead-default">
       <tr>
-        <th>Plays</th>
-        <th>Game</th>
-        <th>Owned</th>
+        <th sort-column="plays">Plays</th>
+        <th sort-column="game" sort-direction="asc">Game</th>
+        <th sort-column="own">Owned</th>
       </tr>
     </thead>
     <tbody>

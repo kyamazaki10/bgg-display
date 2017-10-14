@@ -10,6 +10,9 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 import { AppComponent } from './app.component';
 import { BggService } from './bgg/bgg.service';
+import { BggSortTableColumn } from './bgg/bgg-sort-table-column.component';
+import { BggSortTableDirective } from './bgg/bgg-sort-table.directive';
+import { BggSortTableService } from './bgg/bgg-sort-table.service';
 import { BggUserCollectionComponent } from './bgg/bgg-user-collection.component';
 import { DashboardComponent } from './dashboard.component';
 import { NavigationComponent } from './navigation.component';
@@ -24,6 +27,8 @@ import { AppRoutingModule } from './app-routing.module';
 @NgModule({
   declarations: [
     AppComponent,
+    BggSortTableColumn,
+    BggSortTableDirective,
     BggUserCollectionComponent,
     DashboardComponent,
     NavigationComponent,
@@ -44,6 +49,7 @@ import { AppRoutingModule } from './app-routing.module';
   ],
   providers: [
     BggService,
+    BggSortTableService,
     UserService
   ],
   bootstrap: [
