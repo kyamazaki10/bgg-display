@@ -21,7 +21,7 @@ export class UserCollectionComponent implements OnInit {
     private bggService: BggService
   ) { }
 
-  onSorted($event) {
+  onSort($event) {
     return this.bggService.sortResponse(this.userCollection, $event);
   }
 

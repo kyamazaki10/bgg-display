@@ -2,16 +2,16 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 
 export class SortTableService {
-  private columnSortedSource = new Subject<ColumnSortedEvent>();
+  private columnSortSource = new Subject<ColumnSortEvent>();
 
-  columnSorted$ = this.columnSortedSource.asObservable();
+  columnSort$ = this.columnSortSource.asObservable();
 
-  columnSorted(event: ColumnSortedEvent) {
-    this.columnSortedSource.next(event);
+  columnSort(event: ColumnSortEvent) {
+    this.columnSortSource.next(event);
   }
 }
 
-export interface ColumnSortedEvent {
+export interface ColumnSortEvent {
   sortColumn: string;
   sortDirection: string;
 }

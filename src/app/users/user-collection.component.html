@@ -1,7 +1,7 @@
 <div class="collection-wrapper">
   <h1>{{user}}'s Collection</h1>
 
-  <table sort-table (sorted)="onSorted($event)" class="table table-sm">
+  <table sort-table (sort)="onSort($event)" class="table table-sm">
     <thead class="thead-default">
       <tr>
         <th sort-column="plays">Plays</th>

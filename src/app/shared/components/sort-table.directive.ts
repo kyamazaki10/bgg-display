@@ -7,22 +7,22 @@ import { SortTableService } from './../services/sort-table.service';
   selector: '[sort-table]'
 })
 export class SortTableDirective implements OnInit, OnDestroy {
-  private columnSortedSubscription: Subscription;
+  private columnSortSubscription: Subscription;
 
   constructor(
     private sortTableService: SortTableService
   ) { }
 
   @Output()
-  sorted = new EventEmitter();
+  sort = new EventEmitter();
 
   ngOnInit() {
-    this.columnSortedSubscription = this.sortTableService.columnSorted$.subscribe(event => {
-      this.sorted.emit(event);
+    this.columnSortSubscription = this.sortTableService.columnSort$.subscribe(event => {
+      this.sort.emit(event);
     });
   }
 
   ngOnDestroy() {
-    this.columnSortedSubscription.unsubscribe();
+    this.columnSortSubscription.unsubscribe();
   }
 }
