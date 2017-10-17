@@ -6,7 +6,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { BggService } from './shared/services/bgg.service';
-import { NavigationComponent } from './navigation.component';
+import { NavigationComponent } from './navigation/navigation.component';
 import { SearchComponent } from './search.component';
 import { SortTableColumnComponent } from './shared/components/sort-table-column.component';
 import { SortTableDirective } from './shared/components/sort-table.directive';
