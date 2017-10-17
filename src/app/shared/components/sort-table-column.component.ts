@@ -5,7 +5,8 @@ import { SortTableService } from './../services/sort-table.service';
 
 @Component({
   selector: '[sort-column]',
-  templateUrl: './sort-table-column.component.html'
+  templateUrl: './sort-table-column.component.html',
+  styleUrls: [ './sort-table-column.component.css' ]
 })
 export class SortTableColumnComponent implements OnInit, OnDestroy {
   private columnSortSubscription: Subscription;

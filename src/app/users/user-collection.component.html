@@ -12,7 +12,7 @@
     <tbody>
       <tr *ngFor="let collection of userCollection">
         <td>{{collection.numplays[0]}}</td>
-        <td><a href="https://boardgamegeek.com/boardgame/{{collection.$.collid}}">{{collection.name[0]._}}</a></td>
+        <td><a href="https://boardgamegeek.com/boardgame/{{collection.$.objectid}}">{{collection.name[0]._}}</a></td>
         <td>{{collection.status[0].$.own}}</td>
       </tr>
     </tbody>
