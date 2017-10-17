@@ -11,10 +11,6 @@ import { BggService } from './../shared/services/bgg.service';
 export class UserCollectionComponent implements OnInit {
   private user: string;
   private userCollection: any;
-  private sortDefault = {
-    sortColumn: 'game',
-    sortDirection: 'asc'
-  }
 
   constructor(
     private route: ActivatedRoute,
@@ -26,10 +22,15 @@ export class UserCollectionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const sortDefault = {
+      sortColumn: 'game',
+      sortDirection: 'asc'
+    };
+
     this.route.paramMap
       .switchMap((params: ParamMap) => {
         this.user = params.get('user');
-        return this.bggService.userCollection(this.user, this.sortDefault);
+        return this.bggService.userCollection(this.user, sortDefault);
       })
       .subscribe(userCollection => this.userCollection = userCollection);
   }

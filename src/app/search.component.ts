@@ -7,11 +7,17 @@ import { Router } from '@angular/router';
   styleUrls: [ './search.component.css' ]
 })
 export class SearchComponent {
+  private error: string;
+
   constructor(
     private router: Router
   ) { }
 
   search(user: string): void {
-    this.router.navigate(['users', user]);
+    user !== '' ? this.router.navigate(['users', user]) : this.showError();
+  }
+
+  showError(): void {
+    this.error = 'Please enter a username.';
   }
 }

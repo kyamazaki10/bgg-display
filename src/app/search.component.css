@@ -8,3 +8,11 @@
   width: 30%;
   display: inline-block;
 }
+
+.error {
+  font-size: 13px;
+  font-style: italic;
+  color: #ff0000;
+  text-align: left;
+  margin-left: 10px;
+}
