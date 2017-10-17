@@ -1,5 +1,5 @@
 <div class="collection-wrapper">
-  <h1>{{bggUser}}'s Collection</h1>
+  <h1>{{user}}'s Collection</h1>
 
   <table sort-table (sorted)="onSorted($event)" class="table table-sm">
     <thead class="thead-default">
@@ -10,7 +10,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let collection of bggUserCollection">
+      <tr *ngFor="let collection of userCollection">
         <td>{{collection.numplays[0]}}</td>
         <td><a href="https://boardgamegeek.com/boardgame/{{collection.$.collid}}">{{collection.name[0]._}}</a></td>
         <td>{{collection.status[0].$.own}}</td>

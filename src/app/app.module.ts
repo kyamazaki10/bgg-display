@@ -5,24 +5,24 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
-import { BggService } from './bgg/bgg.service';
-import { BggSortTableColumn } from './bgg/bgg-sort-table-column.component';
-import { BggSortTableDirective } from './bgg/bgg-sort-table.directive';
-import { BggSortTableService } from './bgg/bgg-sort-table.service';
-import { BggUserCollectionComponent } from './bgg/bgg-user-collection.component';
+import { BggService } from './shared/services/bgg.service';
 import { NavigationComponent } from './navigation.component';
 import { SearchComponent } from './search.component';
+import { SortTableColumnComponent } from './shared/components/sort-table-column.component';
+import { SortTableDirective } from './shared/components/sort-table.directive';
+import { SortTableService } from './shared/services/sort-table.service';
+import { UserCollectionComponent } from './users/user-collection.component';
 
 import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BggSortTableColumn,
-    BggSortTableDirective,
-    BggUserCollectionComponent,
     NavigationComponent,
-    SearchComponent
+    SearchComponent,
+    SortTableColumnComponent,
+    SortTableDirective,
+    UserCollectionComponent
   ],
   imports: [
     AppRoutingModule,
@@ -33,7 +33,7 @@ import { AppRoutingModule } from './app-routing.module';
   ],
   providers: [
     BggService,
-    BggSortTableService
+    SortTableService
   ],
   bootstrap: [
     AppComponent

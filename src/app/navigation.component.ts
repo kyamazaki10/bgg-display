@@ -4,5 +4,6 @@ import { Component } from '@angular/core';
   selector: 'navigation',
   templateUrl: './navigation.component.html'
 })
-
-export class NavigationComponent { }
+export class NavigationComponent {
+  title = 'BGG Display';
+}

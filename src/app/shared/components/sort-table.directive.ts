@@ -1,25 +1,23 @@
 import { Directive, OnInit, EventEmitter, Output, OnDestroy, Input } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
-import { BggSortTableService } from './bgg-sort-table.service';
+import { SortTableService } from './../services/sort-table.service';
 
 @Directive({
   selector: '[sort-table]'
 })
-
-export class BggSortTableDirective implements OnInit, OnDestroy {
-
+export class SortTableDirective implements OnInit, OnDestroy {
   private columnSortedSubscription: Subscription;
 
   constructor(
-    private bggSortTableService: BggSortTableService
+    private sortTableService: SortTableService
   ) { }
 
   @Output()
   sorted = new EventEmitter();
 
   ngOnInit() {
-    this.columnSortedSubscription = this.bggSortTableService.columnSorted$.subscribe(event => {
+    this.columnSortedSubscription = this.sortTableService.columnSorted$.subscribe(event => {
       this.sorted.emit(event);
     });
   }

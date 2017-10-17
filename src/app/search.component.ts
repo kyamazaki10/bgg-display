@@ -6,13 +6,12 @@ import { Router } from '@angular/router';
   templateUrl: './search.component.html',
   styleUrls: [ './search.component.css' ]
 })
-
 export class SearchComponent {
   constructor(
     private router: Router
   ) { }
 
   search(user: string): void {
-    this.router.navigate(['bgg', user]);
+    this.router.navigate(['users', user]);
   }
 }

@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import * as xml2js from 'xml2js';
-
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
-
 export class BggService {
-  bggUrl = 'https://www.boardgamegeek.com/xmlapi2';
-  columnName: string;
-  isAscending: boolean;
+  private bggUrl = 'https://www.boardgamegeek.com/xmlapi2';
+  private columnName: string;
+  private isAscending: boolean;
 
   constructor(
     private http: Http

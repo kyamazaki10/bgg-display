@@ -1,17 +1,17 @@
 import { Component, OnInit, Input, EventEmitter, OnDestroy, HostListener } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
-import { BggSortTableService } from './bgg-sort-table.service';
+import { SortTableService } from './../services/sort-table.service';
 
 @Component({
   selector: '[sort-column]',
-  templateUrl: './bgg-sort-table-column.component.html'
+  templateUrl: './sort-table-column.component.html'
 })
-export class BggSortTableColumn implements OnInit, OnDestroy {
-  columnSortSubscription: Subscription;
+export class SortTableColumnComponent implements OnInit, OnDestroy {
+  private columnSortSubscription: Subscription;
 
   constructor(
-    private bggSortTableService: BggSortTableService
+    private sortTableService: SortTableService
   ) { }
 
   @Input('sort-column')
@@ -23,14 +23,14 @@ export class BggSortTableColumn implements OnInit, OnDestroy {
   @HostListener('click')
   sort() {
     this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
-    this.bggSortTableService.columnSorted({
+    this.sortTableService.columnSorted({
       sortColumn: this.sortColumn,
       sortDirection: this.sortDirection
     });
   }
 
   ngOnInit() {
-    this.columnSortSubscription = this.bggSortTableService.columnSorted$.subscribe(event => {
+    this.columnSortSubscription = this.sortTableService.columnSorted$.subscribe(event => {
       if (this.sortColumn !== event.sortColumn) {
         this.sortDirection = '';
       }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 
-export class BggSortTableService {
+export class SortTableService {
   private columnSortedSource = new Subject<ColumnSortedEvent>();
 
   columnSorted$ = this.columnSortedSource.asObservable();

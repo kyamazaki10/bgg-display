@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BggSortTableColumn } from './bgg-sort-table-column.component';
+import { UserCollectionComponent } from './user-collection.component';
 
-describe('BggSortTableColumn', () => {
-  let component: BggSortTableColumn;
-  let fixture: ComponentFixture<BggSortTableColumn>;
+describe('UserCollectionComponent', () => {
+  let component: UserCollectionComponent;
+  let fixture: ComponentFixture<UserCollectionComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BggSortTableColumn ]
+      declarations: [ UserCollectionComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BggSortTableColumn);
+    fixture = TestBed.createComponent(UserCollectionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

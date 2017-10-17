@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { BggUserCollectionComponent } from './bgg/bgg-user-collection.component';
 import { SearchComponent } from './search.component';
+import { UserCollectionComponent } from './users/user-collection.component';
 
 const routes: Routes = [
   {
@@ -10,8 +10,8 @@ const routes: Routes = [
     component: SearchComponent
   },
   {
-    path: 'bgg/:user',
-    component: BggUserCollectionComponent
+    path: 'users/:user',
+    component: UserCollectionComponent
   }
 ];
 
