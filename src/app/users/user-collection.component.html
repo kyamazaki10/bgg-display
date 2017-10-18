@@ -6,13 +6,17 @@
       <tr>
         <th sort-column="plays">Plays</th>
         <th sort-column="game" sort-direction="asc">Game</th>
-        <th sort-column="own">Owned</th>
+        <th sort-column="user-rating">User Rating</th>
+        <th sort-column="geek-rating">Geek Rating</th>
+        <th sort-column="own">Own</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let collection of userCollection">
         <td>{{collection.numplays[0]}}</td>
         <td><a href="https://boardgamegeek.com/boardgame/{{collection.$.objectid}}">{{collection.name[0]._}}</a></td>
+        <td>{{collection.stats[0].rating[0].$.value}}</td>
+        <td>{{collection.stats[0].rating[0].average[0].$.value}}</td>
         <td>{{collection.status[0].$.own}}</td>
       </tr>
     </tbody>

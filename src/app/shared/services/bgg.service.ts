@@ -14,7 +14,7 @@ export class BggService {
   ) { }
 
   userCollection(user: string, sort: sortCriteria): Promise<any> {
-    const url = `${this.bggUrl}/collection?username=${user}`;
+    const url = `${this.bggUrl}/collection?username=${user}&stats=1`;
     let json = {};
 
     return this.http.get(url)
@@ -34,7 +34,7 @@ export class BggService {
     this.columnName = sort.sortColumn;
     this.isAscending = sort.sortDirection === 'asc';
 
-    return (this.columnName === 'game') ?
+    return (this.columnName === 'game' || this.columnName === 'user-rating') ?
       this.sortTextResponse(data, this.isAscending) :
       this.sortNumberResponse(data, this.isAscending);
   }
@@ -67,6 +67,8 @@ export class BggService {
     switch (this.columnName) {
       case 'game': return data['name'][0]._;
       case 'plays': return data['numplays'][0];
+      case 'user-rating': return data['stats'][0].rating[0].$.value;
+      case 'geek-rating': return data['stats'][0].rating[0].average[0].$.value;
       case 'own': return data['status'][0].$.own;
     }
   }
