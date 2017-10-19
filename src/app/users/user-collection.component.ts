@@ -3,6 +3,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 
 import { BggService } from './../shared/services/bgg.service';
+import { UserDataPipe } from './user-data.pipe';
 
 @Component({
   selector: 'users',

@@ -12,6 +12,7 @@ import { SortTableColumnComponent } from './shared/components/sort-table-column.
 import { SortTableDirective } from './shared/components/sort-table.directive';
 import { SortTableService } from './shared/services/sort-table.service';
 import { UserCollectionComponent } from './users/user-collection.component';
+import { UserDataPipe } from './users/user-data.pipe';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -22,7 +23,8 @@ import { AppRoutingModule } from './app-routing.module';
     SearchComponent,
     SortTableColumnComponent,
     SortTableDirective,
-    UserCollectionComponent
+    UserCollectionComponent,
+    UserDataPipe
   ],
   imports: [
     AppRoutingModule,
