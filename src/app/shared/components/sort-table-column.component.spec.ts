@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SortTableColumnComponent } from './sort-table-column.component';
+import { SortTableService } from '../services/sort-table.service';
 
 describe('SortTableColumnComponent', () => {
   let component: SortTableColumnComponent;
@@ -8,7 +9,8 @@ describe('SortTableColumnComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SortTableColumnComponent ]
+      declarations: [ SortTableColumnComponent ],
+      providers: [ SortTableService ]
     })
     .compileComponents();
   }));
