@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: [ './search.component.css' ]
 })
 export class SearchComponent {
-  private error: string;
+  error: string;
 
   constructor(
     private router: Router

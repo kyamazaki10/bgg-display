@@ -8,7 +8,7 @@ import { SearchComponent } from './../search.component';
   providers: [ SearchComponent ]
 })
 export class NavigationComponent {
-  private title = 'BGG Display';
+  title = 'BGG Display';
 
   constructor(
     private searchComponent: SearchComponent
