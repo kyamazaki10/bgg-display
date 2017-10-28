@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import * as xml2js from 'xml2js';
+import 'rxjs/add/operator/delay';
+import 'rxjs/add/operator/retryWhen';
 import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/take';
+import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class BggService {
@@ -18,8 +22,12 @@ export class BggService {
     let json = {};
 
     return this.http.get(url)
+      .retryWhen(errors => errors.delay(3000).take(5))
       .toPromise()
       .then(response => {
+        if (response.status === 202) {
+          throw response;
+        }
         xml2js.parseString(response.text(), function(error, result) {
           json = result.items.item;
         });
