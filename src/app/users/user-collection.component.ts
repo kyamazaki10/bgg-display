@@ -3,6 +3,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 
 import { BggService } from './../shared/services/bgg.service';
+import { User } from './user';
 import { UserDataPipe } from './user-data.pipe';
 
 @Component({
@@ -10,8 +11,8 @@ import { UserDataPipe } from './user-data.pipe';
   templateUrl: './user-collection.component.html'
 })
 export class UserCollectionComponent implements OnInit {
-  private user: string;
-  private userCollection: any;
+  user: User;
+  private userId: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -19,7 +20,7 @@ export class UserCollectionComponent implements OnInit {
   ) { }
 
   onSort($event) {
-    return this.bggService.sortResponse(this.userCollection, $event);
+    return this.bggService.sortResponse(this.user.collection, $event);
   }
 
   ngOnInit(): void {
@@ -30,9 +31,14 @@ export class UserCollectionComponent implements OnInit {
 
     this.route.paramMap
       .switchMap((params: ParamMap) => {
-        this.user = params.get('user');
-        return this.bggService.userCollection(this.user, sortDefault);
+        this.userId = params.get('user');
+        return this.bggService.userCollection(this.userId, sortDefault);
       })
-      .subscribe(userCollection => this.userCollection = userCollection);
+      .subscribe(userCollection => {
+        this.user = {
+          id: this.userId,
+          collection: userCollection
+        };
+      });
   }
 }
