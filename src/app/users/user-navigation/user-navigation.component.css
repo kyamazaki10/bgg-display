@@ -1,0 +1,7 @@
+.user-navigation {
+  float: right;
+}
+
+label:hover:not(.active) {
+  cursor: pointer;
+}

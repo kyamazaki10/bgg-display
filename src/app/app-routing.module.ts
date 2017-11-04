@@ -10,7 +10,7 @@ const routes: Routes = [
     component: SearchComponent
   },
   {
-    path: 'users/:user',
+    path: 'users/:user/collection',
     component: UsersComponent
   }
 ];
