@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { SearchComponent } from './search.component';
-import { UserCollectionComponent } from './users/user-collection.component';
+import { UsersComponent } from './users/users/users.component';
 
 const routes: Routes = [
   {
@@ -11,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: 'users/:user',
-    component: UserCollectionComponent
+    component: UsersComponent
   }
 ];
 

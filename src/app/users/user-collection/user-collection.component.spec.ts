@@ -1,8 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ActivatedRoute } from '@angular/router';
+import { HttpModule } from '@angular/http';
 
+import { BggService } from './../../shared/services/bgg.service';
+import { User } from './../user';
 import { UserCollectionComponent } from './user-collection.component';
-import { UserDataPipe } from './user-data.pipe';
+import { UserDataPipe } from './../user-data.pipe';
 
 describe('UserCollectionComponent', () => {
   let component: UserCollectionComponent;
@@ -14,7 +16,13 @@ describe('UserCollectionComponent', () => {
         UserCollectionComponent,
         UserDataPipe
       ],
-      providers: [ ActivatedRoute ]
+      imports: [
+        HttpModule
+      ],
+      providers: [
+        BggService,
+        User
+      ]
     })
     .compileComponents();
   }));
