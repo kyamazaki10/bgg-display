@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 
 import { BggService } from './../../shared/services/bgg.service';
 import { User } from './../user';
@@ -15,16 +15,21 @@ export class UserCollectionComponent {
     private bggService: BggService
   ) { }
 
+  ngOnChanges(user: User): void {
+    this.getCollection(this.user.id);
+  }
+
   onSort($event) {
     return this.bggService.sortResponse(this.user.collection, $event);
   }
 
-  getCollection(user: string) {
+  getCollection(user: string): void {
     const sortDefault = {
       sortColumn: 'game',
       sortDirection: 'asc'
     };
 
-    return this.bggService.userCollection(user, sortDefault);
+    this.bggService.userCollection(user, sortDefault)
+      .then(collection => this.user.collection = collection);
   }
 }
