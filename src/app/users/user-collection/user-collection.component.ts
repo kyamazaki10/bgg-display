@@ -11,7 +11,6 @@ export class UserCollectionComponent {
   @Input() user: User;
 
   constructor(
-    user: User,
     private bggService: BggService
   ) { }
 

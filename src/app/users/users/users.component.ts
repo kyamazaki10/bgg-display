@@ -1,20 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import 'rxjs/add/operator/switchMap';
 
 import { User } from './../user';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css'],
-  providers: [
-    User
-  ]
+  styleUrls: [ './users.component.css' ],
+  providers: [ User ]
 })
 export class UsersComponent implements OnInit {
   user: User;
-  private userId: string;
 
   constructor(
     private route: ActivatedRoute

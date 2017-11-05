@@ -16,6 +16,7 @@ import { UserCollectionComponent } from './users/user-collection/user-collection
 import { UserDataPipe } from './users/user-data.pipe';
 import { UserNavigationComponent } from './users/user-navigation/user-navigation.component';
 import { UserPlaysComponent } from './users/user-plays/user-plays.component';
+import { UserService } from './shared/services/user.service';
 import { UsersComponent } from './users/users/users.component';
 
 @NgModule({
@@ -40,7 +41,8 @@ import { UsersComponent } from './users/users/users.component';
   ],
   providers: [
     BggService,
-    SortTableService
+    SortTableService,
+    UserService
   ],
   bootstrap: [
     AppComponent

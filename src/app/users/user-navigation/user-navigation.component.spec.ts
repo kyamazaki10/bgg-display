@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { UserNavigationComponent } from './user-navigation.component';
+import { UserService } from './../../shared/services/user.service';
 
 describe('UserNavigationComponent', () => {
   let component: UserNavigationComponent;
@@ -14,7 +15,8 @@ describe('UserNavigationComponent', () => {
       imports: [
         FormsModule,
         RouterTestingModule
-      ]
+      ],
+      providers: [ UserService ]
     })
     .compileComponents();
   }));
