@@ -17,8 +17,20 @@ export class BggService {
     private http: Http
   ) { }
 
-  userCollection(user: string, sort: sortCriteria): Promise<any> {
-    const url = `${this.bggUrl}/collection?username=${user}&stats=1`;
+  userCollection(userId: string, sort: sortCriteria): Promise<any> {
+    const url = `${this.bggUrl}/collection?username=${userId}&stats=1`;
+
+    return this.send(url)
+      .then(response => this.sortResponse(response.items.item, sort));
+  }
+
+  userPlays(userId: string): Promise<any> {
+    const url = `${this.bggUrl}/plays?username=${userId}`;
+
+    return this.send(url);
+  }
+
+  send(url: string): Promise<any> {
     let json = {};
 
     return this.http.get(url)
@@ -29,13 +41,11 @@ export class BggService {
           throw response;
         }
         xml2js.parseString(response.text(), function(error, result) {
-          json = result.items.item;
+          json = result;
         });
-        return this.sortResponse(json, sort);
+        return json;
       })
-      .catch(error => {
-        console.log(error);
-      });
+      .catch(error => console.log(error));
   }
 
   sortResponse(data: any, sort: sortCriteria) {

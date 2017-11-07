@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { BggService } from './../../shared/services/bgg.service';
 import { User } from './../user';
@@ -13,15 +14,18 @@ export class UserPlaysComponent implements OnInit {
   user: User;
 
   constructor(
+    private route: ActivatedRoute,
     private bggService: BggService,
     private userService: UserService
   ) { }
 
   ngOnInit(): void {
-    this.user = this.userService.user;
+    this.user = (this.user) ? this.userService.user : this.userService.getUser(this.route);
+    this.getPlays(this.user.id);
   }
 
-  getPlays() {
-    
+  getPlays(user: string): void {
+    this.bggService.userPlays(user)
+      .then(plays => this.user.plays = plays.plays.play);
   }
 }

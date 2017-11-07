@@ -17,7 +17,6 @@ import { UserDataPipe } from './users/user-data.pipe';
 import { UserNavigationComponent } from './users/user-navigation/user-navigation.component';
 import { UserPlaysComponent } from './users/user-plays/user-plays.component';
 import { UserService } from './shared/services/user.service';
-import { UsersComponent } from './users/users/users.component';
 
 @NgModule({
   declarations: [
@@ -29,8 +28,7 @@ import { UsersComponent } from './users/users/users.component';
     UserCollectionComponent,
     UserDataPipe,
     UserNavigationComponent,
-    UserPlaysComponent,
-    UsersComponent
+    UserPlaysComponent
   ],
   imports: [
     AppRoutingModule,

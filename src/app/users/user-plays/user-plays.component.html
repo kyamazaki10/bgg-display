@@ -2,4 +2,21 @@
 
 <div class="collection-wrapper">
   <h1 *ngIf="user">{{user.id}}'s Plays</h1>
+
+  <table sort-table (sort)="onSort($event)" class="table table-sm">
+      <thead class="thead-default">
+        <tr>
+          <th sort-column="date">Date</th>
+          <th sort-column="game" sort-direction="asc">Game</th>
+          <th sort-column="quantity">Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let play of user?.plays">
+          <td>{{play.$.date}}</td>
+          <td><a href="https://boardgamegeek.com/boardgame/{{play.item[0].$.objectid}}">{{play.item[0].$.name}}</a></td>
+          <td>{{play.$.quantity}}</td>
+        </tr>
+      </tbody>
+    </table>
 </div>

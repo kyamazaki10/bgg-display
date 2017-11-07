@@ -1,34 +1,39 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { BggService } from './../../shared/services/bgg.service';
 import { User } from './../user';
+import { UserService } from './../../shared/services/user.service';
 
 @Component({
   selector: 'user-collection',
   templateUrl: './user-collection.component.html'
 })
 export class UserCollectionComponent {
-  @Input() user: User;
+  user: User;
 
   constructor(
-    private bggService: BggService
+    private route: ActivatedRoute,
+    private bggService: BggService,
+    private userService: UserService
   ) { }
 
-  ngOnChanges(user: User): void {
+  ngOnInit(): void {
+    this.user = (this.user) ? this.userService.user : this.userService.getUser(this.route);
     this.getCollection(this.user.id);
   }
 
-  onSort($event) {
-    return this.bggService.sortResponse(this.user.collection, $event);
-  }
-
-  getCollection(user: string): void {
+  getCollection(userId: string): void {
     const sortDefault = {
       sortColumn: 'game',
       sortDirection: 'asc'
     };
 
-    this.bggService.userCollection(user, sortDefault)
+    this.bggService.userCollection(userId, sortDefault)
       .then(collection => this.user.collection = collection);
+  }
+
+  onSort($event) {
+    return this.bggService.sortResponse(this.user.collection, $event);
   }
 }
