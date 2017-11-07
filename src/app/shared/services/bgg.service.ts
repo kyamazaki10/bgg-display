@@ -52,7 +52,7 @@ export class BggService {
     this.columnName = sort.sortColumn;
     this.isAscending = sort.sortDirection === 'asc';
 
-    return (this.columnName === 'game' || this.columnName === 'user-rating') ?
+    return (this.isTextColumn(this.columnName)) ?
       this.sortTextResponse(data, this.isAscending) :
       this.sortNumberResponse(data, this.isAscending);
   }
@@ -83,11 +83,14 @@ export class BggService {
 
   getSortData(data: any) {
     switch (this.columnName) {
-      case 'game': return data['name'][0]._;
-      case 'plays': return data['numplays'][0];
-      case 'user-rating': return data['stats'][0].rating[0].$.value;
-      case 'geek-rating': return data['stats'][0].rating[0].average[0].$.value;
-      case 'own': return data['status'][0].$.own;
+      case 'collection-game': return data['name'][0]._;
+      case 'collection-plays': return data['numplays'][0];
+      case 'collection-user-rating': return data['stats'][0].rating[0].$.value;
+      case 'collection-geek-rating': return data['stats'][0].rating[0].average[0].$.value;
+      case 'collection-own': return data['status'][0].$.own;
+      case 'plays-game': return data['item'][0].$.name;
+      case 'plays-date': return data.$.date;
+      case 'plays-quantity': return data.$.quantity;
     }
   }
 
@@ -96,6 +99,11 @@ export class BggService {
       a: this.getSortData(a),
       b: this.getSortData(b)
     };
+  }
+
+  isTextColumn(column: string) {
+    const textColumns = [ 'collection-game', 'collection-user-rating', 'plays-game', 'plays-date'];
+    return textColumns.includes(column);
   }
 }
 

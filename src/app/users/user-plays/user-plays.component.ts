@@ -28,4 +28,8 @@ export class UserPlaysComponent implements OnInit {
     this.bggService.userPlays(user)
       .then(plays => this.user.plays = plays.plays.play);
   }
+
+  onSort($event) {
+    return this.bggService.sortResponse(this.user.plays, $event);
+  }
 }
