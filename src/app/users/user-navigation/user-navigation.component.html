@@ -1,5 +1,8 @@
 <div class="user-navigation btn-group" data-toggle="buttons">
   <label class="btn-light" ngbButtonLabel>
+    <input type="checkbox" ngbButton [(ngModel)]="active.dashboard" (click)="navigate(user, 'dashboard')">Dashboard
+  </label>
+  <label class="btn-light" ngbButtonLabel>
     <input type="checkbox" ngbButton [(ngModel)]="active.collection" (click)="navigate(user, 'collection')">Collection
   </label>
   <label class="btn-light" ngbButtonLabel>

@@ -7,8 +7,7 @@ import { UserService } from './../../shared/services/user.service';
 
 @Component({
   selector: 'user-plays',
-  templateUrl: './user-plays.component.html',
-  styleUrls: ['./user-plays.component.css']
+  templateUrl: './user-plays.component.html'
 })
 export class UserPlaysComponent implements OnInit {
   user: User;

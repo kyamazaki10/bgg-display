@@ -9,7 +9,7 @@ import { UserService } from './../../shared/services/user.service';
   selector: 'user-collection',
   templateUrl: './user-collection.component.html'
 })
-export class UserCollectionComponent {
+export class UserCollectionComponent implements OnInit {
   user: User;
 
   constructor(

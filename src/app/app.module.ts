@@ -1,8 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -17,6 +19,7 @@ import { UserDataPipe } from './users/user-data.pipe';
 import { UserNavigationComponent } from './users/user-navigation/user-navigation.component';
 import { UserPlaysComponent } from './users/user-plays/user-plays.component';
 import { UserService } from './shared/services/user.service';
+import { UserDashboardComponent } from './users/user-dashboard/user-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,7 @@ import { UserService } from './shared/services/user.service';
     SortTableColumnComponent,
     SortTableDirective,
     UserCollectionComponent,
+    UserDashboardComponent,
     UserDataPipe,
     UserNavigationComponent,
     UserPlaysComponent
@@ -33,9 +37,11 @@ import { UserService } from './shared/services/user.service';
   imports: [
     AppRoutingModule,
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    NgxChartsModule
   ],
   providers: [
     BggService,

@@ -1,5 +1,6 @@
 .user-navigation {
-  float: right;
+  display: block;
+  text-align: right;
 }
 
 label:hover:not(.active) {
