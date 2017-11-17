@@ -23,8 +23,8 @@ export class UserPlaysComponent implements OnInit {
     this.getPlays(this.user.id);
   }
 
-  getPlays(user: string): void {
-    this.bggService.userPlays(user)
+  getPlays(userId: string): void {
+    this.bggService.userPlays(userId)
       .then(plays => this.user.plays = plays.plays.play);
   }
 

@@ -24,8 +24,9 @@ export class BggService {
       .then(response => this.sortResponse(response.items.item, sort));
   }
 
-  userPlays(userId: string): Promise<any> {
-    const url = `${this.bggUrl}/plays?username=${userId}`;
+  userPlays(userId: string, startDate?: string): Promise<any> {
+    let url = `${this.bggUrl}/plays?username=${userId}`;
+    url += (startDate) ? `&mindate=${startDate}` : '';
 
     return this.send(url);
   }

@@ -16,7 +16,10 @@ export class UserService {
       this.user = {
         id: params['user'],
         collection: null,
-        plays: null
+        plays: null,
+        plays12: null,
+        plays6: null,
+        plays3: null
       }
     });
 
