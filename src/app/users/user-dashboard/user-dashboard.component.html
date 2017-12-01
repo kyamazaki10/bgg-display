@@ -2,35 +2,41 @@
 
 <h1>{{user.id}}'s Dashboard</h1>
 
-<ngx-charts-pie-chart class="pie-chart"
-  [view]="view"
-  [scheme]="colorScheme"
-  [results]="single"
-  [legend]="showLegend"
-  [explodeSlices]="explodeSlices"
-  [labels]="showLabels"
-  [doughnut]="doughnut"
-  [gradient]="gradient">
-</ngx-charts-pie-chart>
+<div *ngIf="plays12">
+  <ngx-charts-pie-chart class="pie-chart"
+    [view]="view"
+    [scheme]="colorScheme"
+    [results]="plays12"
+    [legend]="showLegend"
+    [explodeSlices]="explodeSlices"
+    [labels]="showLabels"
+    [doughnut]="doughnut"
+    [gradient]="gradient">
+  </ngx-charts-pie-chart>
+</div>
 
-<ngx-charts-pie-chart class="pie-chart"
-  [view]="view"
-  [scheme]="colorScheme"
-  [results]="single"
-  [legend]="showLegend"
-  [explodeSlices]="explodeSlices"
-  [labels]="showLabels"
-  [doughnut]="doughnut"
-  [gradient]="gradient">
-</ngx-charts-pie-chart>
+<div *ngIf="plays6">
+  <ngx-charts-pie-chart class="pie-chart"
+    [view]="view"
+    [scheme]="colorScheme"
+    [results]="plays6"
+    [legend]="showLegend"
+    [explodeSlices]="explodeSlices"
+    [labels]="showLabels"
+    [doughnut]="doughnut"
+    [gradient]="gradient">
+  </ngx-charts-pie-chart>
+</div>
 
-<ngx-charts-pie-chart class="pie-chart"
-  [view]="view"
-  [scheme]="colorScheme"
-  [results]="single"
-  [legend]="showLegend"
-  [explodeSlices]="explodeSlices"
-  [labels]="showLabels"
-  [doughnut]="doughnut"
-  [gradient]="gradient">
-</ngx-charts-pie-chart>
+<div *ngIf="plays3">
+  <ngx-charts-pie-chart class="pie-chart"
+    [view]="view"
+    [scheme]="colorScheme"
+    [results]="plays3"
+    [legend]="showLegend"
+    [explodeSlices]="explodeSlices"
+    [labels]="showLabels"
+    [doughnut]="doughnut"
+    [gradient]="gradient">
+  </ngx-charts-pie-chart>
+</div>

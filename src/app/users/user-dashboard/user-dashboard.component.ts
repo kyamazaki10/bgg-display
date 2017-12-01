@@ -5,7 +5,6 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BggService } from './../../shared/services/bgg.service';
 import { User } from './../user';
 import { UserService } from './../../shared/services/user.service';
-import { single, multi } from '../data';
 
 @Component({
   selector: 'user-dashboard',
@@ -14,8 +13,9 @@ import { single, multi } from '../data';
 })
 export class UserDashboardComponent implements OnInit {
   user: User;
-  single: any[];
-  multi: any[];
+  plays12: any[];
+  plays6: any[];
+  plays3: any[];
 
   view = [ 350, 300 ];
   showLegend = false;
@@ -30,9 +30,7 @@ export class UserDashboardComponent implements OnInit {
     private route: ActivatedRoute,
     private bggService: BggService,
     private userService: UserService
-  ) {
-    Object.assign(this, { single, multi });
-  }
+  ) { }
 
   ngOnInit(): void {
     this.user = (this.user) ? this.userService.user : this.userService.getUser(this.route);
@@ -41,19 +39,43 @@ export class UserDashboardComponent implements OnInit {
 
   getMostPlayed(): void {
     Promise.all([
-      this.getPlay('plays12', '2016-11-16'),
-      this.getPlay('plays6', '2017-05-16'),
-      this.getPlay('plays3', '2017-08-16')
+      this.getPlays('plays12', '2016-11-16'),
+      this.getPlays('plays6', '2017-05-16'),
+      this.getPlays('plays3', '2017-08-16')
     ]).then(() => this.updateDashboard());
   }
 
-  getPlay(play: string, startDate: string) {
-    return this.bggService.userPlays(this.user.id, startDate)
-      .then(plays => this.user[play] = plays.plays.play);
+  getPlays(play: string, startDate: string) {
+    const sortDefault = {
+      sortColumn: 'game',
+      sortDirection: 'asc'
+    };
+
+    return this.bggService.userCollection(this.user.id, sortDefault, startDate)
+      .then(collection => this.user[play] = this.getTopPlays(collection, 5));
   }
 
-  updateDashboard() {
+  getTopPlays(plays: any, number: number) {
+    plays.sort(function(a, b) {
+      return parseInt(b.numplays[0]) - parseInt(a.numplays[0]);
+    });
 
+    return plays.splice(0, number);
+  }
+
+  updateDashboard(): void {
+    let plays = [ 'plays12', 'plays6', 'plays3' ];
+
+    for (let play of plays) {
+      this[play] = [];
+
+      for (let game of this.user[play]) {
+        this[play].push({
+          'name': game.name[0]._,
+          'value': game.numplays[0]
+        });
+      }
+    }
   }
 
   calculateStartDate(months: string) {
