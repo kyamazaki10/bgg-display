@@ -17,9 +17,8 @@ export class BggService {
     private http: Http
   ) { }
 
-  userCollection(userId: string, sort?: sortCriteria, startDate?: string): Promise<any> {
-    let url = `${this.bggUrl}/collection?username=${userId}&stats=1`;
-    url += (startDate) ? `&minDate=${startDate}` : '';
+  userCollection(userId: string, sort?: sortCriteria): Promise<any> {
+    const url = `${this.bggUrl}/collection?username=${userId}&stats=1`;
 
     return this.send(url)
       .then(response => this.sortResponse(response.items.item, sort));

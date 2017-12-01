@@ -46,21 +46,39 @@ export class UserDashboardComponent implements OnInit {
   }
 
   getPlays(play: string, startDate: string) {
-    const sortDefault = {
-      sortColumn: 'game',
-      sortDirection: 'asc'
-    };
-
-    return this.bggService.userCollection(this.user.id, sortDefault, startDate)
-      .then(collection => this.user[play] = this.getTopPlays(collection, 5));
+    return this.bggService.userPlays(this.user.id, startDate)
+      .then(collection => {
+        this.user[play] = this.getTopPlays(collection.plays.play, 5)
+      });
   }
 
-  getTopPlays(plays: any, number: number) {
-    plays.sort(function(a, b) {
-      return parseInt(b.numplays[0]) - parseInt(a.numplays[0]);
+  getTopPlays(games: any, number: number) {
+    let array = [];
+
+    for (let game of games) {
+      let title = game.item[0].$.name;
+      let quantity = parseInt(game.$. quantity);
+      let duplicate = array.find(object => object.name === title);
+
+      if (!duplicate) {
+        array.push({
+          'name': title,
+          'value': quantity
+        });
+      } else {
+        duplicate.value += quantity;
+      }
+    }
+
+    return this.sortPlays(array).splice(0, number);
+  }
+
+  sortPlays(array: any) {
+    let sort = array.sort(function(a, b) {
+      return parseInt(b.value) - parseInt(a.value);
     });
 
-    return plays.splice(0, number);
+    return sort;
   }
 
   updateDashboard(): void {
@@ -71,8 +89,8 @@ export class UserDashboardComponent implements OnInit {
 
       for (let game of this.user[play]) {
         this[play].push({
-          'name': game.name[0]._,
-          'value': game.numplays[0]
+          'name': game.name,
+          'value': game.value
         });
       }
     }
