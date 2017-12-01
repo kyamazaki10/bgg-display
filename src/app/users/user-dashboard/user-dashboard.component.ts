@@ -23,7 +23,7 @@ export class UserDashboardComponent implements OnInit {
   explodeSlices = false;
   doughnut = true;
   colorScheme = {
-    domain: [ '#5AA454', '#A10A28', '#C7B42C', '#AAAAAA' ]
+    domain: [ '#a6cee3', '#1f78b4', '#b2df8a', '#33a02c', '#fb9a99' ]
   };
 
   constructor(
@@ -57,14 +57,11 @@ export class UserDashboardComponent implements OnInit {
 
     for (let game of games) {
       let title = game.item[0].$.name;
-      let quantity = parseInt(game.$. quantity);
+      let quantity = parseInt(game.$.quantity);
       let duplicate = array.find(object => object.name === title);
 
-      if (!duplicate) {
-        array.push({
-          'name': title,
-          'value': quantity
-        });
+      if (! duplicate) {
+        array.push({ 'name': title, 'value': quantity });
       } else {
         duplicate.value += quantity;
       }
@@ -74,11 +71,9 @@ export class UserDashboardComponent implements OnInit {
   }
 
   sortPlays(array: any) {
-    let sort = array.sort(function(a, b) {
+    return array.sort(function(a, b) {
       return parseInt(b.value) - parseInt(a.value);
     });
-
-    return sort;
   }
 
   updateDashboard(): void {
