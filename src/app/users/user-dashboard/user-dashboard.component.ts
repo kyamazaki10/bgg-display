@@ -17,7 +17,7 @@ export class UserDashboardComponent implements OnInit {
   plays6: any[];
   plays3: any[];
 
-  view = [ 350, 300 ];
+  view = [ 330, 250 ];
   showLegend = false;
   showLabels = true;
   explodeSlices = false;

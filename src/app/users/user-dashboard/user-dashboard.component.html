@@ -2,11 +2,12 @@
 
 <h1>{{user.id}}'s Dashboard</h1>
 
-<div *ngIf="plays12">
+<div *ngIf="plays3" class="chart">
+  <h3>Past 3 Months</h3>
   <ngx-charts-pie-chart class="pie-chart"
     [view]="view"
     [scheme]="colorScheme"
-    [results]="plays12"
+    [results]="plays3"
     [legend]="showLegend"
     [explodeSlices]="explodeSlices"
     [labels]="showLabels"
@@ -14,7 +15,8 @@
   </ngx-charts-pie-chart>
 </div>
 
-<div *ngIf="plays6">
+<div *ngIf="plays6" class="chart">
+  <h3>Past 6 Months</h3>
   <ngx-charts-pie-chart class="pie-chart"
     [view]="view"
     [scheme]="colorScheme"
@@ -26,11 +28,12 @@
   </ngx-charts-pie-chart>
 </div>
 
-<div *ngIf="plays3">
+<div *ngIf="plays12" class="chart">
+  <h3>Past 12 Months</h3>
   <ngx-charts-pie-chart class="pie-chart"
     [view]="view"
     [scheme]="colorScheme"
-    [results]="plays3"
+    [results]="plays12"
     [legend]="showLegend"
     [explodeSlices]="explodeSlices"
     [labels]="showLabels"
