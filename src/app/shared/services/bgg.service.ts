@@ -21,7 +21,11 @@ export class BggService {
     const url = `${this.bggUrl}/collection?username=${userId}&stats=1`;
 
     return this.send(url)
-      .then(response => this.sortResponse(response.items.item, sort));
+      .then(response => {
+        const collection = response.items.item;
+
+        return (sort) ? this.sortResponse(collection, sort) : collection;
+      });
   }
 
   userPlays(userId: string, startDate?: string): Promise<any> {

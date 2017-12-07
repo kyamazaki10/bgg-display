@@ -2,40 +2,54 @@
 
 <h1>{{user.id}}'s Dashboard</h1>
 
-<div *ngIf="plays3" class="chart">
+<div *ngIf="totalPlays" class="chart">
+  <ngx-charts-number-card
+    [view]="cardView"
+    [scheme]="colorScheme"
+    [results]="totalPlays"
+    [labelFormatting]="cardPlayedLabel">
+  </ngx-charts-number-card>
+</div>
+
+<div *ngIf="totalOwned" class="chart">
+  <ngx-charts-number-card
+    [view]="cardView"
+    [scheme]="colorScheme"
+    [results]="totalOwned"
+    [labelFormatting]="cardOwnedLabel">
+  </ngx-charts-number-card>
+</div>
+
+<h2>Top Games Played</h2>
+
+<div *ngIf="user.plays3" class="chart">
   <h3>Past 3 Months</h3>
   <ngx-charts-pie-chart class="pie-chart"
-    [view]="view"
+    [view]="pieView"
     [scheme]="colorScheme"
-    [results]="plays3"
-    [legend]="showLegend"
-    [explodeSlices]="explodeSlices"
+    [results]="user.plays3"
     [labels]="showLabels"
     [doughnut]="doughnut">
   </ngx-charts-pie-chart>
 </div>
 
-<div *ngIf="plays6" class="chart">
+<div *ngIf="user.plays6" class="chart">
   <h3>Past 6 Months</h3>
   <ngx-charts-pie-chart class="pie-chart"
-    [view]="view"
+    [view]="pieView"
     [scheme]="colorScheme"
-    [results]="plays6"
-    [legend]="showLegend"
-    [explodeSlices]="explodeSlices"
+    [results]="user.plays6"
     [labels]="showLabels"
     [doughnut]="doughnut">
   </ngx-charts-pie-chart>
 </div>
 
-<div *ngIf="plays12" class="chart">
+<div *ngIf="user.plays12" class="chart">
   <h3>Past 12 Months</h3>
   <ngx-charts-pie-chart class="pie-chart"
-    [view]="view"
+    [view]="pieView"
     [scheme]="colorScheme"
-    [results]="plays12"
-    [legend]="showLegend"
-    [explodeSlices]="explodeSlices"
+    [results]="user.plays12"
     [labels]="showLabels"
     [doughnut]="doughnut">
   </ngx-charts-pie-chart>

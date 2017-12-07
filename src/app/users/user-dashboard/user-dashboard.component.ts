@@ -13,14 +13,12 @@ import { UserService } from './../../shared/services/user.service';
 })
 export class UserDashboardComponent implements OnInit {
   user: User;
-  plays12: any[];
-  plays6: any[];
-  plays3: any[];
+  totalPlays: any[];
+  totalOwned: any[];
 
-  view = [ 330, 250 ];
-  showLegend = false;
+  pieView = [ 330, 250 ];
+  cardView = [ 500, 200 ];
   showLabels = true;
-  explodeSlices = false;
   doughnut = true;
   colorScheme = {
     domain: [ '#a6cee3', '#1f78b4', '#b2df8a', '#33a02c', '#fb9a99' ]
@@ -34,21 +32,20 @@ export class UserDashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = (this.user) ? this.userService.user : this.userService.getUser(this.route);
-    this.getMostPlayed();
+    this.getCollection();
+    this.getPlays();
   }
 
-  getMostPlayed(): void {
-    Promise.all([
-      this.getPlays('plays12', '2016-11-16'),
-      this.getPlays('plays6', '2017-05-16'),
-      this.getPlays('plays3', '2017-08-16')
-    ]).then(() => this.updateDashboard());
+  getPlays(): void {
+    this.getPlaysWithStartDate('plays12', '2016-11-16');
+    this.getPlaysWithStartDate('plays6', '2017-05-16');
+    this.getPlaysWithStartDate('plays3', '2017-08-16');
   }
 
-  getPlays(play: string, startDate: string) {
+  getPlaysWithStartDate(play: string, startDate: string) {
     return this.bggService.userPlays(this.user.id, startDate)
       .then(collection => {
-        this.user[play] = this.getTopPlays(collection.plays.play, 5)
+        this.user[play] = this.getTopPlays(collection.plays.play, 5);
       });
   }
 
@@ -70,27 +67,41 @@ export class UserDashboardComponent implements OnInit {
     return this.sortPlays(array).splice(0, number);
   }
 
+  getCollection(): void {
+    this.bggService.userCollection(this.user.id)
+      .then(collection => {
+        this.user.collection = collection;
+        this.getCollectionStats();
+      });
+  }
+
+  getCollectionStats(): void {
+    let totalPlays = 0;
+    let totalOwned = 0;
+    
+    for (let game of this.user.collection) {
+      totalPlays += parseInt(game.numplays[0]);
+      totalOwned += parseInt(game.status[0].$.own[0]);
+    }
+
+    this.totalPlays = [{ 'name': 'totalPlays', 'value': totalPlays }];
+    this.totalOwned = [{ 'name': 'totalOwned', 'value': totalOwned }];
+  }
+
   sortPlays(array: any) {
     return array.sort(function(a, b) {
       return parseInt(b.value) - parseInt(a.value);
     });
   }
 
-  updateDashboard(): void {
-    let plays = [ 'plays12', 'plays6', 'plays3' ];
-
-    for (let play of plays) {
-      this[play] = [];
-
-      for (let game of this.user[play]) {
-        this[play].push({
-          'name': game.name,
-          'value': game.value
-        });
-      }
-    }
+  calculateStartDate(months: string) {
   }
 
-  calculateStartDate(months: string) {
+  cardPlayedLabel() {
+    return 'Total Games Played';
+  }
+
+  cardOwnedLabel() {
+    return 'Total Games Owned';
   }
 }
