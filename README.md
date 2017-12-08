@@ -2,7 +2,7 @@
 
 BggDisplay is an Angular project that leverages the BoardGameGeek APIs to present user data in a cleaner, slicker UI.
 
-!(https://kyamazaki10.github.io/images/dashboard.png "dashboard")
+![](https://kyamazaki10.github.io/images/dashboard.png "dashboard")
 
 ## Development server
 
