@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import * as moment from 'moment';
 
 import { BggService } from './../../shared/services/bgg.service';
 import { User } from './../user';
@@ -37,9 +38,9 @@ export class UserDashboardComponent implements OnInit {
   }
 
   getPlays(): void {
-    this.getPlaysWithStartDate('plays12', '2016-11-16');
-    this.getPlaysWithStartDate('plays6', '2017-05-16');
-    this.getPlaysWithStartDate('plays3', '2017-08-16');
+    this.getPlaysWithStartDate('plays12', this.calculateStartDate(12));
+    this.getPlaysWithStartDate('plays6', this.calculateStartDate(6));
+    this.getPlaysWithStartDate('plays3', this.calculateStartDate(3));
   }
 
   getPlaysWithStartDate(play: string, startDate: string) {
@@ -94,7 +95,8 @@ export class UserDashboardComponent implements OnInit {
     });
   }
 
-  calculateStartDate(months: string) {
+  calculateStartDate(months: number) {
+    return moment().subtract(months, 'months').format('YYYY-MM-DD');
   }
 
   cardPlayedLabel() {
