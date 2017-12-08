@@ -1,6 +1,8 @@
 # BggDisplay
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.1.3.
+BggDisplay is an Angular project that leverages the BoardGameGeek APIs to present user data in a cleaner, slicker UI.
+
+!(https://kyamazaki10.github.io/images/dashboard.png "dashboard")
 
 ## Development server
 
