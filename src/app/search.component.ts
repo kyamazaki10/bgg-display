@@ -14,7 +14,7 @@ export class SearchComponent {
   ) { }
 
   search(user: string): void {
-    user !== '' ? this.router.navigate(['users', user, 'collection']) : this.showError();
+    user !== '' ? this.router.navigate(['users', user, 'dashboard']) : this.showError();
   }
 
   showError(): void {
