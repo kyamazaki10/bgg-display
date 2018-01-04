@@ -25,6 +25,8 @@ export class UserDashboardComponent implements OnInit {
     domain: [ '#a6cee3', '#1f78b4', '#b2df8a', '#33a02c', '#fb9a99' ]
   };
 
+  error: string;
+
   constructor(
     private route: ActivatedRoute,
     private bggService: BggService,
@@ -44,9 +46,15 @@ export class UserDashboardComponent implements OnInit {
   }
 
   getPlaysWithStartDate(play: string, startDate: string) {
+    this.user[play] = null;
+
     return this.bggService.userPlays(this.user.id, startDate)
       .then(collection => {
-        this.user[play] = this.getTopPlays(collection.plays.play, 5);
+        if (collection.plays.play) {
+          this.user[play] = this.getTopPlays(collection.plays.play, 5);
+        } else if (! this.error) {
+          this.error = 'No stats available.';
+        }
       });
   }
 
