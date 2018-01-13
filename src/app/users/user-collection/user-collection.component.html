@@ -3,13 +3,14 @@
 <div class="collection-wrapper">
   <h1 *ngIf="user">{{user.id}}'s Collection</h1>
 
-  <table sort-table (sort)="onSort($event)" class="table table-sm">
+  <table sort-table (sort)="onSort($event)" class="table table-sm table-hover">
     <thead class="thead-default">
       <tr>
         <th sort-column="collection-plays">Plays</th>
         <th sort-column="collection-game" sort-direction="asc">Game</th>
-        <th sort-column="collection-user-rating">User Rating</th>
+        <th sort-column="collection-user-rating">Your Rating</th>
         <th sort-column="collection-geek-rating">Geek Rating</th>
+        <th sort-column="collection-rank">Rank</th>
         <th sort-column="collection-own">Own</th>
       </tr>
     </thead>
@@ -17,9 +18,10 @@
       <tr *ngFor="let collection of user?.collection">
         <td>{{collection.numplays[0]}}</td>
         <td><a href="https://boardgamegeek.com/boardgame/{{collection.$.objectid}}">{{collection.name[0]._}}</a></td>
-        <td>{{collection.stats[0].rating[0].$.value}}</td>
-        <td>{{collection.stats[0].rating[0].average[0].$.value}}</td>
-        <td class="{{collection.status[0].$.own|userData}}"></td>
+        <td>{{collection.stats[0].rating[0].$.value | userData}}</td>
+        <td>{{collection.stats[0].rating[0].average[0].$.value |  userData | number:'0.0-2'}}</td>
+        <td>{{collection.stats[0].rating[0].ranks[0].rank[0].$.value | userData | number}}</td>
+        <td class="{{collection.status[0].$.own | userData: true}}"></td>
       </tr>
     </tbody>
   </table>

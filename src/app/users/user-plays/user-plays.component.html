@@ -3,7 +3,7 @@
 <div class="collection-wrapper">
   <h1 *ngIf="user">{{user.id}}'s Plays</h1>
 
-  <table sort-table (sort)="onSort($event)" class="table table-sm">
+  <table sort-table (sort)="onSort($event)" class="table table-sm table-hover">
     <thead class="thead-default">
       <tr>
         <th sort-column="plays-date">Date</th>
