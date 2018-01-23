@@ -12,6 +12,7 @@
         <th sort-column="collection-geek-rating">Geek Rating</th>
         <th sort-column="collection-plays">Plays</th>
         <th sort-column="collection-own">Own</th>
+        <th sort-column="collection-prev-own">Prev. Own</th>
       </tr>
     </thead>
     <tbody>
@@ -22,6 +23,7 @@
         <td>{{collection.stats[0].rating[0].average[0].$.value |  userData | number:'0.0-2'}}</td>
         <td>{{collection.numplays[0]}}</td>
         <td class="{{collection.status[0].$.own | userData: true}}"></td>
+        <td class="{{collection.status[0].$.prevowned | userData: true}}"></td>
       </tr>
     </tbody>
   </table>

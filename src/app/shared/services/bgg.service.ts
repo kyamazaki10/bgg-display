@@ -94,6 +94,7 @@ export class BggService {
       case 'collection-geek-rating': return data['stats'][0].rating[0].average[0].$.value;
       case 'collection-rank': return data['stats'][0].rating[0].ranks[0].rank[0].$.value;
       case 'collection-own': return data['status'][0].$.own;
+      case 'collection-prev-own': return data['status'][0].$.prevowned;
       case 'plays-game': return data['item'][0].$.name;
       case 'plays-date': return data.$.date;
       case 'plays-quantity': return data.$.quantity;

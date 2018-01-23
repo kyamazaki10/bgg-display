@@ -25,7 +25,7 @@ export class UserCollectionComponent implements OnInit {
 
   getCollection(userId: string): void {
     const sortDefault = {
-      sortColumn: 'collection-game',
+      sortColumn: 'collection-rank',
       sortDirection: 'asc'
     };
 
