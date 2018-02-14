@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { SearchComponent } from './../search.component';
+import { SearchComponent } from './../search/search.component';
 
 @Component({
   selector: 'navigation',

@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BggService } from './shared/services/bgg.service';
 import { NavigationComponent } from './navigation/navigation.component';
-import { SearchComponent } from './search.component';
+import { SearchComponent } from './search/search.component';
 import { SortTableColumnComponent } from './shared/components/sort-table-column.component';
 import { SortTableDirective } from './shared/components/sort-table.directive';
 import { SortTableService } from './shared/services/sort-table.service';
