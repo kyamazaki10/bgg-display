@@ -11,6 +11,7 @@ import { UserService } from './../../shared/services/user.service';
 })
 export class UserCollectionComponent implements OnInit {
   user: User;
+  error: Boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -30,7 +31,7 @@ export class UserCollectionComponent implements OnInit {
     };
 
     this.bggService.userCollection(userId, sortDefault)
-      .then(collection => this.user.collection = collection);
+      .then(collection => (collection) ? this.user.collection = collection : this.error = true);
   }
 
   onSort($event) {

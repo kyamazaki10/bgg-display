@@ -6,9 +6,3 @@ h2, h3 {
   display: inline-block;
   margin: 20px 10px;
 }
-
-.error {
-  font-size: 13px;
-  font-style: italic;
-  color: #ff0000;
-}

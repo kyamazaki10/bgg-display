@@ -1,30 +1,42 @@
 <user-navigation [user]="user"></user-navigation>
 
 <div class="collection-wrapper">
-  <h1 *ngIf="user">{{user.id}}'s Collection</h1>
+  <h1>{{user.id}}'s Collection</h1>
 
-  <table sort-table (sort)="onSort($event)" class="table table-sm table-hover">
-    <thead class="thead-default">
-      <tr>
-        <th sort-column="collection-rank" sort-direction="asc">Rank</th>
-        <th sort-column="collection-game">Game</th>
-        <th sort-column="collection-user-rating">Your Rating</th>
-        <th sort-column="collection-geek-rating">Geek Rating</th>
-        <th sort-column="collection-plays">Plays</th>
-        <th sort-column="collection-own">Own</th>
-        <th sort-column="collection-prev-own">Prev. Own</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let collection of user?.collection">
-        <td>{{collection.stats[0].rating[0].ranks[0].rank[0].$.value | userData | number}}</td>
-        <td><a href="https://boardgamegeek.com/boardgame/{{collection.$.objectid}}">{{collection.name[0]._}}</a></td>
-        <td>{{collection.stats[0].rating[0].$.value | userData}}</td>
-        <td>{{collection.stats[0].rating[0].average[0].$.value |  userData | number:'0.0-2'}}</td>
-        <td>{{collection.numplays[0]}}</td>
-        <td class="{{collection.status[0].$.own | userData: true}}"></td>
-        <td class="{{collection.status[0].$.prevowned | userData: true}}"></td>
-      </tr>
-    </tbody>
-  </table>
+  <div *ngIf="user.collection; else loading">
+    <table sort-table (sort)="onSort($event)" class="table table-sm table-hover">
+      <thead class="thead-default">
+        <tr>
+          <th sort-column="collection-rank" sort-direction="asc">Rank</th>
+          <th sort-column="collection-game">Game</th>
+          <th sort-column="collection-user-rating">Your Rating</th>
+          <th sort-column="collection-geek-rating">Geek Rating</th>
+          <th sort-column="collection-plays">Plays</th>
+          <th sort-column="collection-own">Own</th>
+          <th sort-column="collection-prev-own">Prev. Own</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let collection of user.collection">
+          <td>{{collection.stats[0].rating[0].ranks[0].rank[0].$.value | userData | number}}</td>
+          <td><a href="https://boardgamegeek.com/boardgame/{{collection.$.objectid}}">{{collection.name[0]._}}</a></td>
+          <td>{{collection.stats[0].rating[0].$.value | userData}}</td>
+          <td>{{collection.stats[0].rating[0].average[0].$.value |  userData | number:'0.0-2'}}</td>
+          <td>{{collection.numplays[0]}}</td>
+          <td class="{{collection.status[0].$.own | userData: true}}"></td>
+          <td class="{{collection.status[0].$.prevowned | userData: true}}"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #loading>
+    <div *ngIf="error">
+      <div class="error">No stats available.</div>
+    </div>
+
+    <div *ngIf="!error">
+      <div class="loading">Loading...</div>
+    </div>
+  </ng-template>
 </div>

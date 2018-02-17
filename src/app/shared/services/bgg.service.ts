@@ -33,7 +33,12 @@ export class BggService {
     let url = `${this.bggUrl}/plays?username=${userId}`;
     url += (startDate) ? `&mindate=${startDate}` : '';
 
-    return this.send(url);
+    return this.send(url)
+      .then(response => {
+        if (response.plays) {
+          return response.plays.play;
+        }
+      });
   }
 
   send(url: string): Promise<any> {

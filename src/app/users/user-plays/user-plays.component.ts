@@ -11,6 +11,7 @@ import { UserService } from './../../shared/services/user.service';
 })
 export class UserPlaysComponent implements OnInit {
   user: User;
+  error: Boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -25,7 +26,7 @@ export class UserPlaysComponent implements OnInit {
 
   getPlays(userId: string): void {
     this.bggService.userPlays(userId)
-      .then(plays => this.user.plays = plays.plays.play);
+      .then(plays => (plays) ? this.user.plays = plays : this.error = true);
   }
 
   onSort($event) {

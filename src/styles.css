@@ -31,3 +31,14 @@ body {
 .container-fluid {
   padding-top: 50px;
 }
+
+.loading,
+.error {
+  font-size: 13px;
+  font-style: italic;
+  margin: 5px 0 20px 0;
+}
+
+.error {
+  color: #ff0000;
+}

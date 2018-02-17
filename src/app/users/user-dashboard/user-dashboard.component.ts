@@ -14,6 +14,7 @@ import { UserService } from './../../shared/services/user.service';
 })
 export class UserDashboardComponent implements OnInit {
   user: User;
+  error: Boolean = false;
   totalPlays: any[];
   totalOwned: any[];
 
@@ -24,8 +25,6 @@ export class UserDashboardComponent implements OnInit {
   colorScheme = {
     domain: [ '#a6cee3', '#1f78b4', '#b2df8a', '#33a02c', '#fb9a99' ]
   };
-
-  error: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -46,7 +45,7 @@ export class UserDashboardComponent implements OnInit {
           this.getCollectionStats();
           this.getPlays();
         } else {
-          this.error = 'No stats available.';
+          this.error = true;
         }
       });
   }
@@ -74,9 +73,10 @@ export class UserDashboardComponent implements OnInit {
     this.user[play] = null;
 
     return this.bggService.userPlays(this.user.id, startDate)
-      .then(collection => {
-        this.user[play] = this.getTopPlays(collection.plays.play, 5);
-      });
+      .then(collection => (collection) ?
+        this.user[play] = this.getTopPlays(collection, 5) :
+        this.error = true
+      );
   }
 
   getTopPlays(games: any, number: number) {
