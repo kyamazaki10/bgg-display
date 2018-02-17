@@ -36,7 +36,32 @@ export class UserDashboardComponent implements OnInit {
   ngOnInit(): void {
     this.user = (this.user) ? this.userService.user : this.userService.getUser(this.route);
     this.getCollection();
-    this.getPlays();
+  }
+
+  getCollection(): void {
+    this.bggService.userCollection(this.user.id)
+      .then(collection => {
+        if (collection) {
+          this.user.collection = collection;
+          this.getCollectionStats();
+          this.getPlays();
+        } else {
+          this.error = 'No stats available.';
+        }
+      });
+  }
+
+  getCollectionStats(): void {
+    let totalPlays = 0;
+    let totalOwned = 0;
+
+    for (let game of this.user.collection) {
+      totalPlays += parseInt(game.numplays[0]);
+      totalOwned += parseInt(game.status[0].$.own[0]);
+    }
+
+    this.totalPlays = [{ 'name': 'totalPlays', 'value': totalPlays }];
+    this.totalOwned = [{ 'name': 'totalOwned', 'value': totalOwned }];
   }
 
   getPlays(): void {
@@ -50,11 +75,7 @@ export class UserDashboardComponent implements OnInit {
 
     return this.bggService.userPlays(this.user.id, startDate)
       .then(collection => {
-        if (collection.plays.play) {
-          this.user[play] = this.getTopPlays(collection.plays.play, 5);
-        } else if (! this.error) {
-          this.error = 'No stats available.';
-        }
+        this.user[play] = this.getTopPlays(collection.plays.play, 5);
       });
   }
 
@@ -74,27 +95,6 @@ export class UserDashboardComponent implements OnInit {
     }
 
     return this.sortPlays(array).splice(0, number);
-  }
-
-  getCollection(): void {
-    this.bggService.userCollection(this.user.id)
-      .then(collection => {
-        this.user.collection = collection;
-        this.getCollectionStats();
-      });
-  }
-
-  getCollectionStats(): void {
-    let totalPlays = 0;
-    let totalOwned = 0;
-    
-    for (let game of this.user.collection) {
-      totalPlays += parseInt(game.numplays[0]);
-      totalOwned += parseInt(game.status[0].$.own[0]);
-    }
-
-    this.totalPlays = [{ 'name': 'totalPlays', 'value': totalPlays }];
-    this.totalOwned = [{ 'name': 'totalOwned', 'value': totalOwned }];
   }
 
   sortPlays(array: any) {

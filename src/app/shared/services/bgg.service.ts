@@ -22,9 +22,10 @@ export class BggService {
 
     return this.send(url)
       .then(response => {
-        const collection = response.items.item;
-
-        return (sort) ? this.sortResponse(collection, sort) : collection;
+        if (response) {
+          const collection = response.items.item;
+          return (sort) ? this.sortResponse(collection, sort) : collection;
+        }
       });
   }
 
@@ -42,9 +43,6 @@ export class BggService {
       .retryWhen(errors => errors.delay(3000).take(5))
       .toPromise()
       .then(response => {
-        if (response.status === 202) {
-          throw response;
-        }
         xml2js.parseString(response.text(), function(error, result) {
           json = result;
         });
