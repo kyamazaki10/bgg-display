@@ -33,8 +33,12 @@ export class UserDashboardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.user = (this.user) ? this.userService.user : this.userService.getUser(this.route);
-    this.getCollection();
+    this.route.params.subscribe(params => {
+      this.user = (this.user && this.user.id === params.user) ?
+        this.userService.user : this.userService.getUser(this.route);
+
+      this.getCollection();
+    });
   }
 
   getCollection(): void {
