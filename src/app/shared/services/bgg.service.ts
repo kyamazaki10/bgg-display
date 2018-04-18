@@ -83,6 +83,9 @@ export class BggService {
     return data.sort((a, b) => {
       let compareData = this.getSortCompareData(a, b);
 
+      if (isNaN(compareData.a)) return 1;
+      if (isNaN(compareData.b)) return -1;
+
       return isAscending ?
         compareData.a - compareData.b :
         compareData.b - compareData.a;
@@ -90,18 +93,27 @@ export class BggService {
   }
 
   getSortData(data: any) {
-    switch (this.columnName) {
-      case 'collection-game': return data['name'][0]._;
-      case 'collection-plays': return data['numplays'][0];
-      case 'collection-user-rating': return data['stats'][0].rating[0].$.value;
-      case 'collection-geek-rating': return data['stats'][0].rating[0].average[0].$.value;
-      case 'collection-rank': return data['stats'][0].rating[0].ranks[0].rank[0].$.value;
-      case 'collection-own': return data['status'][0].$.own;
-      case 'collection-prev-own': return data['status'][0].$.prevowned;
-      case 'plays-game': return data['item'][0].$.name;
-      case 'plays-date': return data.$.date;
-      case 'plays-quantity': return data.$.quantity;
+    let value: any;
+
+    if (this.columnName.startsWith('collection')) {
+      value = {
+        'collection-game': data['name'][0]._,
+        'collection-plays': data['numplays'][0],
+        'collection-user-rating': data['stats'][0].rating[0].$.value,
+        'collection-geek-rating': data['stats'][0].rating[0].average[0].$.value,
+        'collection-rank': data['stats'][0].rating[0].ranks[0].rank[0].$.value,
+        'collection-own': data['status'][0].$.own,
+        'collection-prev-own': data['status'][0].$.prevowned
+      };
+    } else {
+      value = {
+        'plays-game': data['item'][0].$.name,
+        'plays-date': data.$.date,
+        'plays-quantity': data.$.quantity
+      };
     }
+
+    return value[this.columnName];
   }
 
   getSortCompareData(a, b) {
