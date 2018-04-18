@@ -103,7 +103,7 @@ export class BggService {
         'collection-geek-rating': data['stats'][0].rating[0].average[0].$.value,
         'collection-rank': data['stats'][0].rating[0].ranks[0].rank[0].$.value,
         'collection-own': data['status'][0].$.own,
-        'collection-prev-own': data['status'][0].$.prevowned
+        'collection-year': data['yearpublished'][0]
       };
     } else {
       value = {
