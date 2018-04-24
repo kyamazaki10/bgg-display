@@ -19,7 +19,10 @@
       <tbody>
         <tr *ngFor="let collection of user.collection">
           <td>{{collection.stats[0].rating[0].ranks[0].rank[0].$.value | userData | number}}</td>
-          <td><a href="https://boardgamegeek.com/boardgame/{{collection.$.objectid}}">{{collection.name[0]._}}</a></td>
+          <td>
+            <a href="https://boardgamegeek.com/boardgame/{{collection.$.objectid}}">{{collection.name[0]._}}</a><br />
+            <p *ngIf="collection.lastPlayed" class="last-played">Last played {{collection.lastPlayed}}</p>
+          </td>
           <td>{{collection.stats[0].rating[0].$.value | userData}}</td>
           <td>{{collection.stats[0].rating[0].average[0].$.value |  userData | number:'0.0-2'}}</td>
           <td>{{collection.numplays[0]}}</td>

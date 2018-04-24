@@ -11,7 +11,7 @@ import { UserService } from './../../shared/services/user.service';
 })
 export class UserPlaysComponent implements OnInit {
   user: User;
-  error: Boolean = false;
+  error: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -20,12 +20,12 @@ export class UserPlaysComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.user = (this.user) ? this.userService.user : this.userService.getUser(this.route);
-    this.getPlays(this.user.id);
+    this.user = (this.userService.user) ? this.userService.user : this.userService.getUser(this.route);
+    this.user.plays = (this.user.plays) ? this.user.plays : this.getPlays();
   }
 
-  getPlays(userId: string): void {
-    this.bggService.userPlays(userId)
+  getPlays(): void {
+    this.bggService.userPlays(this.user.id)
       .then(plays => (plays) ? this.user.plays = plays : this.error = true);
   }
 

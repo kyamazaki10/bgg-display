@@ -14,7 +14,7 @@ import { UserService } from './../../shared/services/user.service';
 })
 export class UserDashboardComponent implements OnInit {
   user: User;
-  error: Boolean = false;
+  error: boolean = false;
   totalPlays: any[];
   totalOwned: any[];
 
@@ -34,10 +34,15 @@ export class UserDashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this.user = (this.user && this.user.id === params.user) ?
+      this.user = (this.userService.user && this.userService.user.id === params.user) ?
         this.userService.user : this.userService.getUser(this.route);
 
-      this.getCollection();
+      if (this.user.collection) {
+        this.getCollectionStats();
+        this.getPlays();
+      } else {
+        this.getCollection();
+      }
     });
   }
 
@@ -68,9 +73,11 @@ export class UserDashboardComponent implements OnInit {
   }
 
   getPlays(): void {
-    this.getPlaysWithStartDate('plays12', this.calculateStartDate(12));
-    this.getPlaysWithStartDate('plays6', this.calculateStartDate(6));
-    this.getPlaysWithStartDate('plays3', this.calculateStartDate(3));
+    if (! this.user.plays12) {
+      this.getPlaysWithStartDate('plays12', this.calculateStartDate(12));
+      this.getPlaysWithStartDate('plays6', this.calculateStartDate(6));
+      this.getPlaysWithStartDate('plays3', this.calculateStartDate(3));
+    }
   }
 
   getPlaysWithStartDate(play: string, startDate: string) {
